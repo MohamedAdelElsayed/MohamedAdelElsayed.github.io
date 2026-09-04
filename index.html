@@ -326,12 +326,12 @@
         <p class="role">Geospatial &amp; Surveying student — GIS analysis, spatial data quality, and 3D visualization. Building toward a career as a GIS Analyst / Spatial Data Technologist.</p>
       </div>
       <div class="portrait">
-        <img src="images/profile-photo.jpg" alt="Portrait of Mohamed Adel">
+        <img src="profile-photo.jpg" alt="Portrait of Mohamed Adel">
       </div>
     </div>
   </div>
   <div class="hero-img">
-    <img src="images/01-3d-hero.png" alt="Data-driven 3D visualization of the Madinety residential compound">
+    <img src="01-3d-hero.png" alt="Data-driven 3D visualization of the Madinety residential compound">
   </div>
   <div class="hero-caption mono">Madinety Residential Compound — data-driven 3D GIS model, ArcScene</div>
 </header>
@@ -357,11 +357,11 @@
     <div class="pair">
       <div class="card before">
         <div class="label">BEFORE — raw source imagery</div>
-        <img src="images/00-raw-imagery.png" alt="Raw aerial imagery of the compound before any GIS processing">
+        <img src="00-raw-imagery.png" alt="Raw aerial imagery of the compound before any GIS processing">
       </div>
       <div class="card after">
         <div class="label">AFTER — data-driven 3D model</div>
-        <img src="images/01-3d-hero.png" alt="Final 3D GIS visualization of the same compound">
+        <img src="01-3d-hero.png" alt="Final 3D GIS visualization of the same compound">
       </div>
     </div>
   </section>
@@ -370,7 +370,7 @@
     <div class="kicker"><span class="n mono">00</span><h2>Project overview</h2></div>
     <p>An end-to-end GIS workflow for a residential compound: digitization, geometry quality control, attribute engineering, spatial analysis, and 3D visualization, built in Esri ArcGIS (ArcMap + ArcScene).</p>
     <figure>
-      <img src="images/02-overview-with-imagery.png" alt="Top-down view of buildings, roads and gardens over the source imagery">
+      <img src="02-overview-with-imagery.png" alt="Top-down view of buildings, roads and gardens over the source imagery">
       <figcaption>Digitized layers — buildings, roads, gardens, study boundary — over source imagery</figcaption>
     </figure>
   </section>
@@ -379,7 +379,7 @@
     <div class="kicker"><span class="n mono">01</span><h2>Spatial data digitization</h2></div>
     <p>340 building footprints, the road network, 23 green/garden areas, and the study boundary were digitized and projected to WGS 1984 UTM Zone 36N, organized inside a Personal Geodatabase.</p>
     <figure>
-      <img src="images/03-digitized-clean.png" alt="Digitized layers without imagery basemap">
+      <img src="03-digitized-clean.png" alt="Digitized layers without imagery basemap">
       <figcaption>Digitized dataset — buildings, roads, gardens (no basemap)</figcaption>
     </figure>
   </section>
@@ -390,15 +390,15 @@
     <div class="pair">
       <div class="card before">
         <div class="label">Check Geometry — 1 issue found</div>
-        <img src="images/05-geometry-error.png" alt="Check Geometry result showing one self-intersection error">
+        <img src="05-geometry-error.png" alt="Check Geometry result showing one self-intersection error">
       </div>
       <div class="card after">
         <div class="label">After Repair Geometry — 0 issues</div>
-        <img src="images/07-geometry-fixed.png" alt="Check Geometry result showing zero issues after repair">
+        <img src="07-geometry-fixed.png" alt="Check Geometry result showing zero issues after repair">
       </div>
     </div>
     <figure>
-      <img src="images/06-geometry-zoom.png" alt="Zoomed view of the self-intersection defect on building B205">
+      <img src="06-geometry-zoom.png" alt="Zoomed view of the self-intersection defect on building B205">
       <figcaption>Self-intersection defect on building B205, zoomed in</figcaption>
     </figure>
   </section>
@@ -409,21 +409,21 @@
     <div class="pair">
       <div class="card before">
         <div class="label">Field Calculator — Building_ID (Python)</div>
-        <img src="images/08-fieldcalc-buildingid.png" alt="Python code in Field Calculator generating Building IDs">
+        <img src="08-fieldcalc-buildingid.png" alt="Python code in Field Calculator generating Building IDs">
       </div>
       <div class="card after">
         <div class="label">Result — 340 IDs generated</div>
-        <img src="images/09-buildingid-result.png" alt="Attribute table with generated Building IDs">
+        <img src="09-buildingid-result.png" alt="Attribute table with generated Building IDs">
       </div>
     </div>
     <div class="pair">
       <div class="card before">
         <div class="label">Field Calculator — Height (area-driven)</div>
-        <img src="images/10-fieldcalc-height.png" alt="Python code in Field Calculator generating Height from area">
+        <img src="10-fieldcalc-height.png" alt="Python code in Field Calculator generating Height from area">
       </div>
       <div class="card after">
         <div class="label">Result — Height populated</div>
-        <img src="images/11-height-result.png" alt="Attribute table with generated Height values">
+        <img src="11-height-result.png" alt="Attribute table with generated Height values">
       </div>
     </div>
   </section>
@@ -439,8 +439,8 @@
       <div class="stat"><span class="v mono">≈ 0.54</span><span class="l">Green-to-built ratio</span></div>
     </div>
     <div class="pair">
-      <div class="card"><div class="label" style="background:var(--ink-soft)">Buildings — statistics</div><img src="images/12-buildings-stats.png" alt="Statistics window for building area"></div>
-      <div class="card"><div class="label" style="background:var(--ink-soft)">Gardens — statistics</div><img src="images/13-gardens-stats.png" alt="Statistics window for garden area"></div>
+      <div class="card"><div class="label" style="background:var(--ink-soft)">Buildings — statistics</div><img src="12-buildings-stats.png" alt="Statistics window for building area"></div>
+      <div class="card"><div class="label" style="background:var(--ink-soft)">Gardens — statistics</div><img src="13-gardens-stats.png" alt="Statistics window for garden area"></div>
     </div>
   </section>
 
@@ -448,7 +448,7 @@
     <div class="kicker"><span class="n mono">05</span><h2>Data-driven 3D visualization</h2></div>
     <p>Building footprints were extruded in ArcScene using the attribute-based Height field — not a fixed constant — so the model's height responds directly to real feature data. This is the difference between a 3D model and a data-driven 3D visualization.</p>
     <figure>
-      <img src="images/14-3d-topview.png" alt="Top-down view of the 3D model showing varied building heights">
+      <img src="14-3d-topview.png" alt="Top-down view of the 3D model showing varied building heights">
       <figcaption>Top-down view of the data-driven 3D scene — building heights vary by footprint area</figcaption>
     </figure>
   </section>
