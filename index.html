@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Adel — Geospatial &amp; GIS Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#E7E2D3;
+    --paper-2:#DED8C6;
+    --ink:#1B2624;
+    --ink-soft:#3E4A44;
+    --teal:#2C6B5E;
+    --teal-deep:#1D4B41;
+    --rust:#A34A1F;
+    --grid:#B9AF97;
+    --white:#FBFAF5;
+    --max:920px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* subtle UTM-grid texture */
+  .grid-bg{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity:0.18;
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+
+  header.hero{
+    position:relative;
+    overflow:hidden;
+    background:var(--ink);
+    color:var(--white);
+    padding: 64px 24px 0;
+  }
+  .hero-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .coord{
+    font-size:13px;
+    color:#9FD6C4;
+    letter-spacing:0.02em;
+    margin-bottom:28px;
+  }
+  h1.name{
+    font-size:clamp(40px, 7vw, 68px);
+    margin:0 0 6px;
+    font-weight:700;
+    line-height:1.02;
+  }
+  .role{
+    font-size:20px;
+    color:#C9D6D0;
+    margin:0 0 40px;
+    max-width:560px;
+  }
+  .hero-top{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .hero-text{ flex:1; min-width:260px; }
+  .portrait{
+    width:132px;
+    height:132px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid var(--teal);
+    box-shadow:0 0 0 6px rgba(44,107,94,0.15);
+    flex-shrink:0;
+  }
+  .portrait img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-img{
+    width:100%;
+    display:block;
+    border-top:1px solid #2E3D39;
+    margin-top:32px;
+  }
+  .hero-img img{
+    width:100%;
+    display:block;
+  }
+  .hero-caption{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:14px 24px 40px;
+    font-size:13px;
+    color:#8FA69E;
+  }
+
+  nav.tabs{
+    background:var(--paper-2);
+    border-bottom:1px solid var(--grid);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  nav.tabs .row{
+    max-width:var(--max);
+    margin:0 auto;
+    display:flex;
+    gap:2px;
+    overflow-x:auto;
+    padding:0 24px;
+  }
+  nav.tabs a{
+    white-space:nowrap;
+    font-size:13px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    padding:14px 10px;
+    border-bottom:2px solid transparent;
+  }
+  nav.tabs a:hover{ border-bottom-color:var(--teal); color:var(--ink); }
+
+  main{ position:relative; }
+
+  section{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:72px 24px;
+    border-bottom:1px solid var(--grid);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .kicker{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .kicker .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--teal-deep);
+    background:var(--white);
+    border:1px solid var(--grid);
+    padding:3px 8px;
+    border-radius:3px;
+  }
+  h2{
+    font-size:clamp(24px, 3.4vw, 32px);
+    margin:0;
+    font-weight:600;
+  }
+  p{ max-width:66ch; color:var(--ink-soft); font-size:16.5px; }
+  .lede{ font-size:19px; color:var(--ink); max-width:62ch; }
+
+  figure{ margin:32px 0 0; }
+  figure img{
+    width:100%;
+    display:block;
+    border:1px solid var(--grid);
+    background:var(--white);
+  }
+  figcaption{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:8px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  .pair{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:32px;
+  }
+  .pair .card{
+    border:1px solid var(--grid);
+    background:var(--white);
+  }
+  .pair .card img{ width:100%; display:block; }
+  .pair .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:8px 12px;
+    color:var(--white);
+  }
+  .pair .before .label{ background:var(--ink-soft); }
+  .pair .after .label{ background:var(--teal-deep); }
+  .arrow{
+    text-align:center;
+    color:var(--teal);
+    font-size:24px;
+    margin:16px 0;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+    gap:1px;
+    background:var(--grid);
+    border:1px solid var(--grid);
+    margin-top:32px;
+  }
+  .stat{
+    background:var(--white);
+    padding:22px 18px;
+  }
+  .stat .v{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:26px;
+    color:var(--teal-deep);
+    font-weight:600;
+    display:block;
+  }
+  .stat .l{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:4px;
+    display:block;
+  }
+
+  .flow{
+    margin-top:32px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .flow .step{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:14px 0;
+  }
+  .flow .step .dot{
+    width:10px; height:10px;
+    background:var(--teal);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .flow .step .txt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+  }
+  .flow .connector{
+    width:1px;
+    height:22px;
+    background:var(--grid);
+    margin-left:5px;
+  }
+
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:28px;
+    margin-top:32px;
+  }
+  .skill-groups h3{
+    font-size:14px;
+    text-transform:none;
+    color:var(--teal-deep);
+    margin:0 0 10px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .skill-groups ul{
+    margin:0; padding:0; list-style:none;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .skill-groups li{ padding:3px 0; }
+
+  footer{
+    background:var(--ink);
+    color:var(--white);
+    padding:56px 24px;
+  }
+  footer .inner{ max-width:var(--max); margin:0 auto; }
+  footer h2{ color:var(--white); }
+  footer p{ color:#C9D6D0; }
+  .contact-links{
+    display:flex; gap:20px; flex-wrap:wrap; margin-top:24px;
+  }
+  .contact-links a{
+    color:var(--white);
+    border:1px solid #3E4A44;
+    padding:10px 18px;
+    text-decoration:none;
+    font-size:14px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .contact-links a:hover{ border-color:var(--teal); color:#9FD6C4; }
+
+  @media (max-width:640px){
+    .pair{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-inner">
+    <div class="coord mono">31.7059° N, 30.4715° E &nbsp;·&nbsp; WGS 1984 UTM Zone 36N</div>
+    <div class="hero-top">
+      <div class="hero-text">
+        <h1 class="name">Mohamed Adel</h1>
+        <p class="role">Geospatial &amp; Surveying student — GIS analysis, spatial data quality, and 3D visualization. Building toward a career as a GIS Analyst / Spatial Data Technologist.</p>
+      </div>
+      <div class="portrait">
+        <img src="images/profile-photo.jpg" alt="Portrait of Mohamed Adel">
+      </div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="images/01-3d-hero.png" alt="Data-driven 3D visualization of the Madinety residential compound">
+  </div>
+  <div class="hero-caption mono">Madinety Residential Compound — data-driven 3D GIS model, ArcScene</div>
+</header>
+
+<nav class="tabs">
+  <div class="row">
+    <a href="#overview">Overview</a>
+    <a href="#digitization">01 Digitization</a>
+    <a href="#qc">02 Quality Control</a>
+    <a href="#attributes">03 Attributes</a>
+    <a href="#analysis">04 Analysis</a>
+    <a href="#3d">05 3D</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="before-after">
+    <div class="kicker"><span class="n mono">→</span><h2>From raw imagery to structured GIS data</h2></div>
+    <p class="lede">This project takes a residential compound from an unprocessed aerial photo to a quality-controlled, analysis-ready, data-driven 3D model — the same pipeline a client project needs, not just a static map.</p>
+    <div class="pair">
+      <div class="card before">
+        <div class="label">BEFORE — raw source imagery</div>
+        <img src="images/00-raw-imagery.png" alt="Raw aerial imagery of the compound before any GIS processing">
+      </div>
+      <div class="card after">
+        <div class="label">AFTER — data-driven 3D model</div>
+        <img src="images/01-3d-hero.png" alt="Final 3D GIS visualization of the same compound">
+      </div>
+    </div>
+  </section>
+
+  <section id="overview">
+    <div class="kicker"><span class="n mono">00</span><h2>Project overview</h2></div>
+    <p>An end-to-end GIS workflow for a residential compound: digitization, geometry quality control, attribute engineering, spatial analysis, and 3D visualization, built in Esri ArcGIS (ArcMap + ArcScene).</p>
+    <figure>
+      <img src="images/02-overview-with-imagery.png" alt="Top-down view of buildings, roads and gardens over the source imagery">
+      <figcaption>Digitized layers — buildings, roads, gardens, study boundary — over source imagery</figcaption>
+    </figure>
+  </section>
+
+  <section id="digitization">
+    <div class="kicker"><span class="n mono">01</span><h2>Spatial data digitization</h2></div>
+    <p>340 building footprints, the road network, 23 green/garden areas, and the study boundary were digitized and projected to WGS 1984 UTM Zone 36N, organized inside a Personal Geodatabase.</p>
+    <figure>
+      <img src="images/03-digitized-clean.png" alt="Digitized layers without imagery basemap">
+      <figcaption>Digitized dataset — buildings, roads, gardens (no basemap)</figcaption>
+    </figure>
+  </section>
+
+  <section id="qc">
+    <div class="kicker"><span class="n mono">02</span><h2>Geometry quality control</h2></div>
+    <p>Before any analysis, the building layer was checked with Check Geometry. It flagged one self-intersection error (out of 340 buildings) — repaired, then re-verified at zero remaining issues. Clean geometry first; analysis only after.</p>
+    <div class="pair">
+      <div class="card before">
+        <div class="label">Check Geometry — 1 issue found</div>
+        <img src="images/05-geometry-error.png" alt="Check Geometry result showing one self-intersection error">
+      </div>
+      <div class="card after">
+        <div class="label">After Repair Geometry — 0 issues</div>
+        <img src="images/07-geometry-fixed.png" alt="Check Geometry result showing zero issues after repair">
+      </div>
+    </div>
+    <figure>
+      <img src="images/06-geometry-zoom.png" alt="Zoomed view of the self-intersection defect on building B205">
+      <figcaption>Self-intersection defect on building B205, zoomed in</figcaption>
+    </figure>
+  </section>
+
+  <section id="attributes">
+    <div class="kicker"><span class="n mono">03</span><h2>Attribute engineering</h2></div>
+    <p>A standardized Building_ID scheme (B001–B340) was generated programmatically via Python in the ArcGIS Field Calculator, not entered by hand. A Height field, derived from each building's real footprint area, followed the same approach.</p>
+    <div class="pair">
+      <div class="card before">
+        <div class="label">Field Calculator — Building_ID (Python)</div>
+        <img src="images/08-fieldcalc-buildingid.png" alt="Python code in Field Calculator generating Building IDs">
+      </div>
+      <div class="card after">
+        <div class="label">Result — 340 IDs generated</div>
+        <img src="images/09-buildingid-result.png" alt="Attribute table with generated Building IDs">
+      </div>
+    </div>
+    <div class="pair">
+      <div class="card before">
+        <div class="label">Field Calculator — Height (area-driven)</div>
+        <img src="images/10-fieldcalc-height.png" alt="Python code in Field Calculator generating Height from area">
+      </div>
+      <div class="card after">
+        <div class="label">Result — Height populated</div>
+        <img src="images/11-height-result.png" alt="Attribute table with generated Height values">
+      </div>
+    </div>
+  </section>
+
+  <section id="analysis">
+    <div class="kicker"><span class="n mono">04</span><h2>Spatial analysis</h2></div>
+    <p>With clean, structured data in place, quantitative analysis was run on the compound's main land-cover components.</p>
+    <div class="stat-grid">
+      <div class="stat"><span class="v mono">340</span><span class="l">Buildings</span></div>
+      <div class="stat"><span class="v mono">115,204 m²</span><span class="l">Total built-up area</span></div>
+      <div class="stat"><span class="v mono">23</span><span class="l">Green / garden areas</span></div>
+      <div class="stat"><span class="v mono">61,752 m²</span><span class="l">Total green space</span></div>
+      <div class="stat"><span class="v mono">≈ 0.54</span><span class="l">Green-to-built ratio</span></div>
+    </div>
+    <div class="pair">
+      <div class="card"><div class="label" style="background:var(--ink-soft)">Buildings — statistics</div><img src="images/12-buildings-stats.png" alt="Statistics window for building area"></div>
+      <div class="card"><div class="label" style="background:var(--ink-soft)">Gardens — statistics</div><img src="images/13-gardens-stats.png" alt="Statistics window for garden area"></div>
+    </div>
+  </section>
+
+  <section id="3d">
+    <div class="kicker"><span class="n mono">05</span><h2>Data-driven 3D visualization</h2></div>
+    <p>Building footprints were extruded in ArcScene using the attribute-based Height field — not a fixed constant — so the model's height responds directly to real feature data. This is the difference between a 3D model and a data-driven 3D visualization.</p>
+    <figure>
+      <img src="images/14-3d-topview.png" alt="Top-down view of the 3D model showing varied building heights">
+      <figcaption>Top-down view of the data-driven 3D scene — building heights vary by footprint area</figcaption>
+    </figure>
+  </section>
+
+  <section id="workflow">
+    <div class="kicker"><span class="n mono">→</span><h2>Complete workflow</h2></div>
+    <div class="flow mono">
+      <div class="step"><span class="dot"></span><span class="txt">Raw aerial imagery</span></div>
+      <div class="connector"></div>
+      <div class="step"><span class="dot"></span><span class="txt">Digitization</span></div>
+      <div class="connector"></div>
+      <div class="step"><span class="dot"></span><span class="txt">Geometry quality control</span></div>
+      <div class="connector"></div>
+      <div class="step"><span class="dot"></span><span class="txt">Attribute engineering</span></div>
+      <div class="connector"></div>
+      <div class="step"><span class="dot"></span><span class="txt">Spatial analysis</span></div>
+      <div class="connector"></div>
+      <div class="step"><span class="dot"></span><span class="txt">3D visualization</span></div>
+      <div class="connector"></div>
+      <div class="step"><span class="dot" style="background:var(--rust)"></span><span class="txt">GIS deliverable</span></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="kicker"><span class="n mono">→</span><h2>Skills demonstrated</h2></div>
+    <div class="skill-groups">
+      <div>
+        <h3>Spatial data</h3>
+        <ul><li>Feature digitization</li><li>Personal Geodatabase</li><li>Coordinate reference systems</li></ul>
+      </div>
+      <div>
+        <h3>Data quality</h3>
+        <ul><li>Geometry validation</li><li>Error detection &amp; repair</li><li>QC workflow design</li></ul>
+      </div>
+      <div>
+        <h3>Attribute management</h3>
+        <ul><li>Schema development</li><li>Automated ID generation</li><li>Python Field Calculator</li></ul>
+      </div>
+      <div>
+        <h3>Spatial analysis</h3>
+        <ul><li>Area calculation</li><li>Land-cover analysis</li><li>Spatial ratios</li></ul>
+      </div>
+      <div>
+        <h3>3D GIS</h3>
+        <ul><li>2D-to-3D transformation</li><li>Attribute-driven extrusion</li><li>ArcScene visualization</li></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="inner">
+    <h2>Let's talk GIS</h2>
+    <p>Open to GIS Analyst / Spatial Data Technologist opportunities — internships, junior roles, and remote or contract work — in Canada, Australia, and the MENA region.</p>
+    <div class="contact-links">
+      <a href="mailto:mohammedd.adel.elsayed@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/mohamed-adel-elsayed-891a9a339/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
